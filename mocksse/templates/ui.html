@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MockSse UI</title>
+    <link rel="stylesheet" href="ui.css">
+
+    <script>
+      function enviarEvento() {
+        var contenido = document.getElementById("contenido-evento").value;
+        fetch("/events/generic/18877", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ evento: contenido }),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </head>
+  <body>
+    <form class="form" onsubmit="event.preventDefault(); enviarEvento();">
+      <textarea
+        id="contenido-evento"
+        placeholder="Escribe el contenido del evento aquí..."
+        cols=50 rows=10
+      ></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </body>
+</html>
