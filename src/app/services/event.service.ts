@@ -1,13 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
-  constructor(private http: HttpClient) { }
+  constructor() { }
   private eventSources: { [key: string]: EventSource } = {};
   private eventDataBS: Subject<any> = new Subject();
   private eventErrorBS: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);

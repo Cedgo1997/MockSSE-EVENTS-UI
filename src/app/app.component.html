@@ -1,15 +1,17 @@
-<div>
-  <label for="url">URL:</label>
-  <input type="text" id="url" [(ngModel)]="url">
-</div>
-<div>
-  <label for="userIds">User IDs (comma separated):</label>
-  <input type="text" id="userIds" [(ngModel)]="userIds">
-</div>
-<button (click)="connect()">Conectar</button>
-
-<div class="event-container">
-  <div *ngFor="let event of events">
-    <pre>{{ event | json }}</pre>
+<div class="container">
+  <h1>Conectar a Eventos</h1>
+  <div>
+    <label for="url">URL:</label>
+    <input type="text" id="url" [(ngModel)]="url" />
+  </div>
+  <div>
+    <label for="userIds">User IDs (separados por comas):</label>
+    <input type="text" id="userIds" [(ngModel)]="userIds" />
+  </div>
+  <button (click)="connect()">Conectar</button>
+  <div class="event-container">
+    <div *ngFor="let event of events">
+      <pre>{{ event | json }}</pre>
+    </div>
   </div>
 </div>
