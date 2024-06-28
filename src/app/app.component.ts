@@ -13,9 +13,6 @@ export class AppComponent {
   events: any[] = [];
 
   constructor(private eventService: EventService) {
-    this.eventService.getEvents().subscribe((event: any) => {
-      this.events.push(event);
-    });
   }
 
   connect(): void {
@@ -25,6 +22,10 @@ export class AppComponent {
     userIdArray.forEach(userId => {
       if (!isNaN(userId)) {
         this.eventService.listenToCampaignsEvents(this.url, userId, campaignIds);
+        this.eventService.getEvents().subscribe((event: any) => {
+          console.log(event)
+          this.events.push(event);
+        });
       }
     });
   }
