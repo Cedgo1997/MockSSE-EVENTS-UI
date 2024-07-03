@@ -5,13 +5,13 @@
     <input type="text" id="url" [(ngModel)]="url" />
   </div>
   <div>
-    <label for="userIds">User IDs (separados por comas):</label>
-    <input type="text" id="userIds" [(ngModel)]="userIds" />
+    <label for="url">Token:</label>
+    <input type="text" id="token" [(ngModel)]="token" />
   </div>
   <button (click)="connect()">Conectar</button>
   <div class="event-container">
     <div *ngFor="let event of events">
-      <pre>{{ event | json }}</pre>
+      <pre>userId:{{event.userId}} ; data size:{{event.data.length}}; data: {{event.data | json}}</pre>
     </div>
   </div>
 </div>

@@ -10,12 +10,12 @@ export class EventService {
   private eventDataBS: Subject<any> = new Subject();
   private eventErrorBS: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  listenToCampaignsEvents(url: string, userId: number, campaignIds: number[]): void {
+  listenToCampaignsEvents(url: string, userId: number, campaignIds: number[], token: string): void {
     const eventSourceKey = `${url}/events/generic/${userId}`;
-    this.eventSources[eventSourceKey] = new EventSource(`${eventSourceKey}?campaignIds=${campaignIds}`);
+    this.eventSources[eventSourceKey] = new EventSource(`${eventSourceKey}?campaignIds=${campaignIds}&token=token=${token}`);
 
     this.eventSources[eventSourceKey].addEventListener("Notification", (event: Partial<MessageEvent>) => {
-      this.eventDataBS.next(JSON.parse(event.data));
+      this.eventDataBS.next({ data: JSON.parse(event.data), userId: userId});
     });
   }
 
